@@ -72,7 +72,7 @@ class Settings
             }
         } else {
             createSampleFile()
-            writeln "Info: take a look at the vocabulary file, and press ENTER to start training: "
+            writeln "Info: Press ENTER to start training or CTRL+C / STRG+C to stop. "
             readAnswer()
         }
     }
@@ -412,7 +412,7 @@ class Trainer
         String answer = readAnswer()
         if (answer.isEmpty()) {
             writeln "  ${word[langY]}", DELAY3
-            write   "  You made a guess, was it right or wrong? [R/w] ", DELAY3
+            write   "  Guessing without typing? Was it right or wrong? [R/w] ", DELAY3
             answer = readAnswer()
             right = ((answer == "r") || answer.isEmpty())
         } else {
@@ -423,7 +423,7 @@ class Trainer
                 }
             } else {
                 writeln "  ${word[langY]}", DELAY3
-                write "  Maybe that was wrong, was it right or wrong? [r/W] ", DELAY3
+                write "  This looks wrong... Was it right or wrong? [r/W] ", DELAY3
                 answer = readAnswer()
                 right = (answer == "r")
             }

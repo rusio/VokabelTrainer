@@ -1,4 +1,4 @@
-A small command-line vocable trainer that uses the box system.
+A small command-line vocable trainer that uses the [Leitner Box System](https://en.wikipedia.org/wiki/Leitner_system).
 
 The vocables are stored into 5 "boxes", where they are grouped
 by learning progress. To run you will need Java and Groovy installed.
