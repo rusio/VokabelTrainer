@@ -192,7 +192,6 @@ class Word
 
     void resetPasses() { passFN = passNF = 0 }
 
-    // TODO: use meta-programming on the field objects instead of this method?
     void trimPasses() {
         if (passFN < MIN_PASS) { passFN = MIN_PASS }
         if (passFN > MAX_PASS) { passFN = MAX_PASS }
@@ -357,7 +356,9 @@ class Trainer
                 askSampleFN(sample)
                 askSampleNF(sample)
             }
-            askSampleRandom(sample)
+            else {
+                askSampleRandom(sample)
+            }
             writeln ""
 
             Set<Word> wrongs = sample.wrongs
