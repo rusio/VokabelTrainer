@@ -1,7 +1,9 @@
-import static Settings.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
 import static ConsoleUI.*
-import static java.lang.Math.*
-import java.text.*
+import static Settings.*
+import static java.lang.Math.min
 
 class Settings
 {
@@ -486,30 +488,36 @@ class Trainer
 }
 
 // main(args)
+public class GroovyMain {
 
-Settings.initialize()
-switch (args.size()) {
-    case 2:
-        if (args[0] == "create") {
-            VOCS_FILE = new File(VOCS_DIR, "vocabulary.${args[1]}.txt")
-            Settings.createEmptyVocsFile()
-            return
+    static void executeApplication(List<String> args) {
+        Settings.initialize()
+        switch (args.size()) {
+            case 2:
+                if (args[0] == "create") {
+                    VOCS_FILE = new File(VOCS_DIR, "vocabulary.${args[1]}.txt")
+                    Settings.createEmptyVocsFile()
+                    return
+                }
+                break
+            case 1:
+                File try1 = new File(VOCS_DIR, args[0])
+                File try2 = new File(VOCS_DIR, "vocabulary.${args[0]}.txt")
+                VOCS_FILE = [try1, try2].find { it.exists() }
+                if (VOCS_FILE == null) {
+                    writeln "The specified vocabulary file doesn't exist"
+                    return
+                }
+                break
+            case 0:
+                Settings.selectVocsFile()
+                break
         }
-        break
-    case 1:
-        File try1 = new File(VOCS_DIR, args[0])
-        File try2 = new File(VOCS_DIR, "vocabulary.${args[0]}.txt")
-        VOCS_FILE = [try1, try2].find { it.exists() }
-        if (VOCS_FILE == null) {
-            writeln "The specified vocabulary file doesn't exist"
-            return
-        }
-        break
-    case 0:
-        Settings.selectVocsFile()
-        break
+        StoreBox box = new StoreBox()
+        box.loadWords()
+        Trainer trainer = new Trainer(box: box)
+        trainer.trainUser()
+    }
 }
-StoreBox box = new StoreBox()
-box.loadWords()
-trainer = new Trainer(box:box)
-trainer.trainUser()
+
+GroovyMain.executeApplication(args.toList())
