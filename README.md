@@ -56,7 +56,7 @@ Stopping VokabelTrainer
 -----------------------
 
 In a typical training session VokabelTrainer asks you about 30 words in various
-directions and and terminates. You can terminate the session yourself by pressing
+directions and then terminates. You can terminate the session yourself by pressing
 `CTRL+C`.
 
 Note: temporary results will be saved after a store is completed.
