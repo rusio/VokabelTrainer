@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 import static Settings.*
 import static ConsoleUI.*
 import static java.lang.Math.*
